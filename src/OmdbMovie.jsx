@@ -15,8 +15,9 @@ const OmdbMovie = () => {
   const searchMovies = async () => {
     try {
       const response = await axios.get(
-        `https://omdbmovie-backend.onrender.com/api/Movie/search?title=${searchTerm}`
+        `https://movieapp-backend-uz9h.onrender.com/api/Movie/search?title=${searchTerm}`
       );
+    
       setSearchResults(response.data.search);
       setMovies(response.data.search);
       // Save the search query to local storage
@@ -49,7 +50,7 @@ const OmdbMovie = () => {
   return (
     <Router>
       <div className="app">
-        <h1>OMDB MovieApp</h1>
+        <h1>OMDB Movie Application</h1>
 
         <div className="search">
           <input
@@ -78,7 +79,7 @@ const OmdbMovie = () => {
                   <div className="container">
                     {movies &&
                       movies.map((movie) => (
-                        <Link key={movie.imdbID} to={`https://omdbmovie-backend.onrender.com/api/Movie/${movie.imdbID}`}>
+                        <Link key={movie.imdbID} to={`https://movieapp-backend-uz9h.onrender.com/api/Movie/${movie.imdbID}`}>
                           <MovieCard movie={movie} />
                         </Link>
                       ))}
@@ -94,7 +95,7 @@ const OmdbMovie = () => {
                 )}
 
                 <div>
-                  <h2>Search History:</h2>
+                  <h2 className="history">Search History:</h2>
                   <ul>
                     {searchHistory.map((query, index) => (
                       <li key={index}>{query}</li>
@@ -104,7 +105,7 @@ const OmdbMovie = () => {
               </div>
             }
           />
-          <Route path="https://omdbmovie-backend.onrender.com/api/Movie/:id" element={<MovieDetails />} />
+          <Route path="https://movieapp-backend-uz9h.onrender.com/api/Movie/:id" element={<MovieDetails />} />
         </Routes>
       </div>
     </Router>
